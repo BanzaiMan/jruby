@@ -2,10 +2,11 @@ language: java
 before_script:
   - unset GEM_PATH GEM_HOME IRBRC
   - "export PATH=`pwd`/bin:$PATH"
+  - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+  - export PATH=$JAVA_HOME/bin:$PATH
 
 jdk:
   - oraclejdk7
-  - oraclejdk8
 
 os:
   - linux
@@ -40,7 +41,7 @@ branches:
     - /^test-.*$/
 
 before_install:
-  - if [[ $TRAVIS_JDK_VERSION = 'oraclejdk8' ]]; then sudo apt-get update; sudo apt-get install oracle-java8-installer; else true; fi
+  - sudo apt-get update; sudo apt-get install oracle-java8-installer
 
 # the install stores the artifact in the localrepo for 
 # the second maven run with $TARGET
@@ -55,10 +56,6 @@ notifications:
     template:
       - "%{repository} (%{branch}:%{commit} by %{author}): %{message} (%{build_url})"
 
-  # update jruby-head installed on Travis CI
-  webhooks:
-    urls:
-      - "https://rubies.travis-ci.org/rebuild/jruby-head"
 # we are on a branch
     #on_success: always
     on_failure: never
