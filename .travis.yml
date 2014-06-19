@@ -34,12 +34,6 @@ matrix:
   allow_failures:
     - env: TARGET='-Prake -Dtask=spec:ci_interpreted_ir_travis'
 
-branches:
-  only:
-    - master
-    - jruby-1_7
-    - /^test-.*$/
-
 before_install:
   - sudo apt-get update; sudo apt-get install oracle-java8-installer
 
