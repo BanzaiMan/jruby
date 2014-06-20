@@ -2,8 +2,7 @@ language: java
 before_script:
   - unset GEM_PATH GEM_HOME IRBRC
   - "export PATH=`pwd`/bin:$PATH"
-  - export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-  - export PATH=$JAVA_HOME/bin:$PATH
+  - jdk_switcher $TRAVIS_JDK_VERSION
 
 jdk:
   - oraclejdk7
@@ -35,6 +34,8 @@ matrix:
     - env: TARGET='-Prake -Dtask=spec:ci_interpreted_ir_travis'
 
 before_install:
+  - ./set_up_jdk_switcher.rb
+  - source $HOME/.jdk_switcher_rc
   - sudo apt-get update; sudo apt-get install oracle-java8-installer
 
 # the install stores the artifact in the localrepo for
