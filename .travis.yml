@@ -36,7 +36,7 @@ matrix:
 before_install:
   - ./set_up_jdk_switcher.rb
   - source $HOME/.jdk_switcher_rc
-  - sudo apt-get update; sudo apt-get install oracle-java8-installer
+  - if [[ $TRAVIS_JDK_VERSION = 'oraclejdk8' ]]; then sudo apt-get update; sudo apt-get install oracle-java8-installer; else true; fi
 
 # the install stores the artifact in the localrepo for
 # the second maven run with $TARGET
