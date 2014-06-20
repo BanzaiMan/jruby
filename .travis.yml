@@ -2,7 +2,7 @@ language: java
 before_script:
   - unset GEM_PATH GEM_HOME IRBRC
   - "export PATH=`pwd`/bin:$PATH"
-  - jdk_switcher $TRAVIS_JDK_VERSION
+  - jdk_switcher use $TRAVIS_JDK_VERSION
 
 jdk:
   - oraclejdk7
