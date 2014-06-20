@@ -35,6 +35,7 @@ matrix:
 
 before_install:
   - ./set_up_jdk_switcher.rb
+  - grep sudo $HOME/.jdk_switcher_rc || true
   - source $HOME/.jdk_switcher_rc
   - if [[ $TRAVIS_JDK_VERSION = 'oraclejdk8' ]]; then sudo apt-get update; sudo apt-get install oracle-java8-installer; else true; fi
 
