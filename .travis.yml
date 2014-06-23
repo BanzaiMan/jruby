@@ -13,27 +13,12 @@ os:
 
 env:
   matrix:
-    - TARGET='-Ptest'
-    - TARGET='-Prake -Dtask=test:extended'
-    - TARGET='-Prake -Dtask=spec:ci_interpreted_travis'
     - TARGET='-Ptruffle'
 
 matrix:
-  include:
-    # these profile do no need to run for all JDKs
-    - env: TARGET='-Pdist'
-      jdk: oraclejdk8
-    - env: TARGET='-Pjruby-jars'
-      jdk: oraclejdk7
-    - env: TARGET='-Pmain'
-      jdk: oraclejdk7
-    - env: TARGET='-Pcomplete'
-      jdk: oraclejdk8
-  fast_finish: true
-  allow_failures:
-    - env: TARGET='-Prake -Dtask=spec:ci_interpreted_ir_travis'
 
 before_install:
+  - git fetch --tags
   - ./set_up_jdk_switcher.rb
   - grep sudo $HOME/.jdk_switcher_rc || true
   - source $HOME/.jdk_switcher_rc
